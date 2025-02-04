@@ -1,0 +1,11 @@
+applications:
+  - name: execution-dev
+    buildpack: staticfile_buildpack
+    memory: 512MB
+    instances: 1
+    path: dist/btp-sd-app
+    services:
+      - name: nodeuaa
+
+    env:
+      TENANT_HOST_PATTERN: '^(.*)\\.cf.eu10-004.hana.ondemand.com\.com$'
