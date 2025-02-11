@@ -9,10 +9,12 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
 
-//  private baseUrl = environment.apiUrl
-//private baseUrl = "https://express-proxy-app.cfapps.us10-001.hana.ondemand.com/api"
-//private baseUrl = "https://proxy-server.cfapps.eu10-004.hana.ondemand.com/api"
-private baseUrl = '/backend-dest'
+  //  private baseUrl = environment.apiUrl
+  //private baseUrl = "https://express-proxy-app.cfapps.us10-001.hana.ondemand.com/api"
+  //private baseUrl = "https://proxy-server.cfapps.eu10-004.hana.ondemand.com/api"
+  private baseUrl = '/backend-dest'
+
+  //private baseUrl = 'https://thingproxy.freeboard.io/fetch/https://btpsddev.cfapps.eu10-004.hana.ondemand.com'
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +22,7 @@ private baseUrl = '/backend-dest'
     let params = new HttpParams();
 
     // headers =new HttpHeaders().set('Authorization',`Bearer ${ localStorage.getItem('token')}`)
-    
+
     if (queryParam) {
       params = params.set('keyword', queryParam);
       console.log(params);
@@ -28,17 +30,17 @@ private baseUrl = '/backend-dest'
     console.log(this.http.get<T>(`${this.baseUrl}/${url}`, { params }));
     return this.http.get<T>(`${this.baseUrl}/${url}`);
   }
-  
+
   getID<T>(url: string, id: number, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
     //const options = { params, headers };
-    
+
     //headers =new HttpHeaders().set('Authorization',`Bearer ${ localStorage.getItem('token')}`)
     console.log(this.http.get<T>(`${this.baseUrl}/${url}/${id}`));
     return this.http.get<T>(`${this.baseUrl}/${url}/${id}`);
   }
 
   post<T>(url: string, body: any, headers?: HttpHeaders): Observable<T> {
-   
+
     return this.http.post<T>(`${this.baseUrl}/${url}`, body);
   }
 
@@ -46,7 +48,7 @@ private baseUrl = '/backend-dest'
     return this.http.put<T>(`${this.baseUrl}/${url}/${id}`, body);
   }
 
-  patch<T>(url: string, id: number,body: any, headers?: HttpHeaders): Observable<T> {
+  patch<T>(url: string, id: number, body: any, headers?: HttpHeaders): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}/${url}/${id}`, body);
   }
 

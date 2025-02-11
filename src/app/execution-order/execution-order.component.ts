@@ -26,6 +26,7 @@ import { forkJoin } from 'rxjs';
 export class ExecutionOrderComponent {
 
   //cloud data:
+  stopEditing: string="";
   documentNumber!: number;
   itemNumber!: number;
   customerId!: number;
@@ -99,6 +100,13 @@ export class ExecutionOrderComponent {
 
   }
   ngOnInit() {
+    this._ApiService.get<any>(`salesorderitemcloud/${this.documentNumber}/${this.itemNumber}`).subscribe(response => {
+      console.log(response.d);
+      console.log(response.d.OrderRelatedBillingStatus);
+      this.stopEditing=response.d.OrderRelatedBillingStatus;
+      console.log(this.stopEditing);
+    });
+
     this._ApiService.get<ServiceMaster[]>('servicenumbers').subscribe(response => {
       this.recordsServiceNumber = response;
     });

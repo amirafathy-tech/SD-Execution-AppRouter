@@ -508,7 +508,7 @@
             </td>
 
             <td style="min-width: 10rem;">
-                <div class="flex align-items-center justify-content-center gap-2">
+                <div *ngIf="stopEditing !== 'C'; else emptyDiv" class="flex align-items-center justify-content-center gap-2">
                     <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
                         (click)="onMainItemEditInit(mainItem)" class="p-button-rounded p-button-text"></button>
                     <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
@@ -518,6 +518,9 @@
                         (click)="onMainItemEditCancel(mainItem, ri)"
                         class="p-button-rounded p-button-text p-button-danger"></button>
                 </div>
+                <ng-template #emptyDiv>
+                    <div></div>
+                </ng-template>
             </td>
         </tr>
     </ng-template>
