@@ -1,13 +1,9 @@
 <div class="card">
-    <p-toast></p-toast>
     <p-toolbar>
-
         <div class="p-toolbar-group-start">
-            <!-- <h6>1.0 Excavation</h6> -->
             <h5>{{itemText}}</h5>
         </div>
         <div class="p-toolbar-group-end">
-
             <p-button [outlined]="true" label="Save Document" size="small" icon="pi pi-save" (click)="saveDocument()"
                 class="m-2"></p-button>
             <p-button [outlined]="true" label="Print" size="small" icon="pi pi-print" class="m-2"></p-button>
@@ -15,7 +11,6 @@
                 class="m-2"></p-button>
             <p-button [outlined]="true" label="Import" size="small" icon="pi pi-external-link"
                 (click)="showImportsDialog()" class="m-2"></p-button>
-
             <!-- <button pButton size="small" (click)="saveDocument()" class="m-2">Save Document</button>
             <button pButton icon="pi pi-print" size="small" class="m-2 "></button>
             <button pButton label="Export" size="small" (click)="exportExcel()" icon="pi pi-download"
@@ -38,7 +33,6 @@
         </div>
     </div>
 </div>
-
 <p-toast></p-toast>
 
 <p-table [value]="mainItemsRecords |search:searchKey" dataKey="executionOrderMainCode" [resizableColumns]="true"
@@ -46,7 +40,6 @@
     [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [filterDelay]="0">
-
     <ng-template pTemplate="caption">
         <div class="flex flex-wrap justify-content-between gap-2">
             <div class="border border-primary rounded">
@@ -57,7 +50,8 @@
                 </div>
             </div>
             <div>
-                <p-button   [outlined]="true"  size="small" icon="pi pi-trash" (click)="deleteRecord()" class="m-2"></p-button>
+                <p-button [outlined]="true" size="small" icon="pi pi-trash" (click)="deleteRecord()"
+                    class="m-2"></p-button>
                 <!-- <button pButton size="small" icon="pi pi-trash" (click)="deleteRecord()" severity="danger"
                     class="m-2"></button> -->
             </div>
@@ -66,9 +60,7 @@
 
     <ng-template pTemplate="header">
         <tr>
-            <!-- class="sticky-header" -->
             <th pReorderableColumn pResizableColumn style="min-width: 10rem;">
-                <!-- <p-checkbox (onChange)="onSelectAllRecords($event)" [value]="invoicesRecords"></p-checkbox> -->
             </th>
             <th pReorderableColumn pResizableColumn style="min-width: 10rem;">Print </th>
             <th pReorderableColumn pResizableColumn style="min-width: 10rem;"> MainItem.No </th>
@@ -101,20 +93,15 @@
 
     <ng-template pTemplate="body" let-mainItem let-editing="editing" let-ri="rowIndex">
         <tr [pEditableRow]="mainItem" [pReorderableRow]="ri">
-
             <td style="min-width: 10rem;">
                 <p-tableCheckbox [value]="mainItem" />
-                <!-- <p-checkbox [value]="mainItem" [(ngModel)]="mainItem.selected"
-                    (onChange)="onMainItemSelection($event, mainItem)"></p-checkbox> -->
             </td>
             <td style="min-width: 10rem;">
                 <p-checkbox [value]="mainItem" [(ngModel)]="mainItem.doNotPrint"
                     (onChange)="onMainItemSelection($event, mainItem)"></p-checkbox>
-
             </td>
             <td style="min-width: 10rem;">
                 {{mainItem.originalIndex}}
-                <!-- {{ rowIndex + ri + 1 }} -->
             </td>
             <td style="min-width: 10rem;">
                 <!-- Line Number -->
@@ -162,7 +149,6 @@
                                 pTooltip="{{ mainItem.description }}" tooltipPosition="top" [autoHide]="false">
                         </ng-container>
                         <ng-container *ngIf="!updateShortTextChangeAllowed && updateSelectedServiceNumberRecord">
-                            <!-- {{ updateSelectedServiceNumberRecord.description }} -->
                             <div class="text-ellipsis" [pTooltip]="updateSelectedServiceNumberRecord.description"
                                 tooltipPosition="top" [autoHide]="false">
                                 {{ updateSelectedServiceNumberRecord.description | truncateWords }}
@@ -194,7 +180,6 @@
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         <ng-container *ngIf="updateSelectedServiceNumberRecord">
-                            <!-- {{ updateSelectedServiceNumberRecord.baseUnitOfMeasurement }} -->
                             {{ updateSelectedServiceNumberRecord.unitOfMeasurementCode }}
                         </ng-container>
                         <ng-container *ngIf="!updateSelectedServiceNumberRecord">
@@ -242,7 +227,6 @@
                                 </div>
                             </ng-template>
                         </p-dropdown> -->
-
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ mainItem.currencyCode?mainItem.currencyCode: cloudCurrency }}
@@ -253,7 +237,6 @@
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         {{ (mainItem.totalQuantity ?? 0) * (mainItem.amountPerUnit ?? 0) }}
-
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ mainItem.total }}
@@ -266,7 +249,6 @@
                     <ng-template pTemplate="input">
                         <input pInputNumber class="rounded-input" name="actualQuantity" disabled type="number" [min]="0"
                             [(ngModel)]="mainItem.actualQuantity">
-
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ mainItem.actualQuantity }}
@@ -321,7 +303,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- Material Grp -->
                 <p-cellEditor>
@@ -348,9 +329,8 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
-                <!-- Service Type will change to its attribute -->
+                <!-- Service Type  -->
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         <ng-container *ngIf="updateSelectedServiceNumberRecord">
@@ -375,7 +355,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- External Service Number -->
                 <p-cellEditor>
@@ -394,7 +373,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- Service Text -->
                 <p-cellEditor>
@@ -413,7 +391,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!--  Line Text -->
                 <p-cellEditor>
@@ -432,7 +409,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- Personnel Number -->
                 <p-cellEditor>
@@ -451,7 +427,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- Line Type -->
                 <p-cellEditor>
@@ -472,9 +447,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
-
-
             <td style="min-width: 10rem;">
                 <!-- Bidders Line -->
                 <p-cellEditor>
@@ -511,7 +483,6 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-
             <td style="min-width: 10rem;">
                 <!-- *ngIf="stopEditing !== 'C'; else emptyDiv"  -->
                 <div class="flex align-items-center justify-content-center gap-2">
@@ -536,28 +507,14 @@
         <ng-container *ngIf="selectedSalesQuotations">
             <tr *ngFor="let mainItem of selectedSalesQuotations">
                 <td style="min-width: 10rem;">
-                    <!-- <button pButton type="button" icon="pi pi-times" class="p-button-danger w-3 h-1" 
-                        (click)="cancelMainItem(mainItem)">
-                    </button> -->
                 </td>
                 <td style="min-width: 10rem;"> </td>
                 <td style="min-width: 10rem;"></td>
                 <td style="min-width: 10rem;">
                     <input pInputNumber name="lineNumber" class="rounded-input" type="text"
                         [(ngModel)]="mainItem.lineNumber">
-                    <!-- <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputNumber name="lineNumber" class="rounded-input" type="text"
-                                [(ngModel)]="mainItem.lineNumber">
-
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ mainItem.lineNumber }}
-                        </ng-template>
-                    </p-cellEditor> -->
                 </td>
                 <td style="min-width: 10rem;">
-                    <!-- {{mainItem.serviceNumberCode}} -->
                     <ng-container *ngIf="mainItem">
                         <p-dropdown [options]="recordsServiceNumber" [(ngModel)]="mainItem.serviceNumberCode"
                             [ngModelOptions]="{standalone: true}" optionValue="serviceNumberCode"
@@ -595,26 +552,13 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
-
                 </td>
                 <td style="min-width: 10rem;">
-                    <!-- {{mainItem.amountPerUnit}} -->
                     <input pInputNumber name="amountPerUnit" class="rounded-input" type="number" [min]="0"
                         [(ngModel)]="mainItem.amountPerUnitWithProfit">
                 </td>
                 <td style="min-width: 10rem;">
                     {{cloudCurrency}}
-                    <!-- {{mainItem.currencyCode}} -->
-                    <!-- <p-dropdown [options]="recordsCurrency" [(ngModel)]="mainItem.currencyCode"
-                    [ngModelOptions]="{standalone: true}" optionValue="code" optionLabel="code" [filter]="true"
-                    [filterFields]="['code','description']" [showClear]="true" placeholder="Select Currency"
-                    [required]="true" [appendTo]="'body'" [virtualScroll]="true" [virtualScrollItemSize]="40">
-                    <ng-template let-record pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <div>{{ record.code }}::{{ record.description }}</div>
-                        </div>
-                    </ng-template>
-                </p-dropdown> -->
                 </td>
                 <td style="min-width: 10rem;">
                     <!-- {{mainItem.total}} -->
@@ -717,30 +661,27 @@
                         </p-dropdown>
                     </ng-container>
                 </td>
-
                 <!-- Bidders Line -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="biddersLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.biddersLine">
                 </td>
-
                 <!--  Supplementary Line  -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="supplementaryLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.supplementaryLine">
                 </td>
-
                 <!-- Lot Cost One -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="lotCostOne" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.lotCostOne">
                 </td>
-
                 <td style="min-width: 10rem;">
                     <div class="flex align-items-center justify-content-center gap-2">
-                        
-          <p-button   [outlined]="true" icon="pi pi-plus" label="Add" size="small" (click)="saveMainItem(mainItem)" class="m-2"></p-button>
-          <p-button   [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small" (click)="cancelMainItemSalesQuotation(mainItem)" ></p-button>
+                        <p-button [outlined]="true" icon="pi pi-plus" label="Add" size="small"
+                            (click)="saveMainItem(mainItem)" class="m-2"></p-button>
+                        <p-button [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small"
+                            (click)="cancelMainItemSalesQuotation(mainItem)"></p-button>
                         <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" label="Add"
                             style=" border-radius: 8px; " (click)="saveMainItem(mainItem)">
                         </button>
@@ -755,7 +696,6 @@
         <ng-container *ngIf="selectedModelSpecsDetails">
             <tr *ngFor="let item of selectedModelSpecsDetails">
                 <td style="min-width: 10rem;">
-
                 </td>
                 <td style="min-width: 10rem;"> </td>
                 <td style="min-width: 10rem;"></td>
@@ -915,30 +855,27 @@
                         </p-dropdown>
                     </ng-container>
                 </td>
-
                 <!-- Bidders Line -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="biddersLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="item.biddersLine">
                 </td>
-
                 <!--  Supplementary Line  -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="supplementaryLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="item.supplementaryLine">
                 </td>
-
                 <!-- Lot Cost One -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="lotCostOne" class="rounded-input" type="checkbox"
                         [(ngModel)]="item.lotSizeForCostingIsOne">
                 </td>
-
                 <td style="min-width: 10rem;">
                     <div class="flex align-items-center justify-content-center gap-2">
-                        
-          <p-button   [outlined]="true" icon="pi pi-plus" label="Add" size="small" (click)="saveModelSpecsDetails(item)" class="m-2"></p-button>
-          <p-button   [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small" (click)="cancelModelSpecsDetails(item)" ></p-button>
+                        <p-button [outlined]="true" icon="pi pi-plus" label="Add" size="small"
+                            (click)="saveModelSpecsDetails(item)" class="m-2"></p-button>
+                        <p-button [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small"
+                            (click)="cancelModelSpecsDetails(item)"></p-button>
                         <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" label="Add"
                             style=" border-radius: 8px; " (click)="saveModelSpecsDetails(item)">
                         </button>
@@ -1012,7 +949,6 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
-
                 </td>
                 <td style="min-width: 10rem;">
                     <!-- {{mainItem.amountPerUnit}} -->
@@ -1021,17 +957,6 @@
                 </td>
                 <td style="min-width: 10rem;">
                     {{cloudCurrency}}
-                    <!-- {{mainItem.currencyCode}} -->
-                    <!-- <p-dropdown [options]="recordsCurrency" [(ngModel)]="mainItem.currencyCode"
-                    [ngModelOptions]="{standalone: true}" optionValue="code" optionLabel="code" [filter]="true"
-                    [filterFields]="['code','description']" [showClear]="true" placeholder="Select Currency"
-                    [required]="true" [appendTo]="'body'" [virtualScroll]="true" [virtualScrollItemSize]="40">
-                    <ng-template let-record pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <div>{{ record.code }}::{{ record.description }}</div>
-                        </div>
-                    </ng-template>
-                </p-dropdown> -->
                 </td>
                 <td style="min-width: 10rem;">
                     <!-- {{mainItem.total}} -->
@@ -1134,30 +1059,27 @@
                         </p-dropdown>
                     </ng-container>
                 </td>
-
                 <!-- Bidders Line -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="biddersLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.biddersLine">
                 </td>
-
                 <!--  Supplementary Line  -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="supplementaryLine" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.supplementaryLine">
                 </td>
-
                 <!-- Lot Cost One -->
                 <td style="min-width: 10rem;">
                     <input pInputText name="lotCostOne" class="rounded-input" type="checkbox"
                         [(ngModel)]="mainItem.lotCostOne">
                 </td>
-
                 <td style="min-width: 10rem;">
                     <div class="flex align-items-center justify-content-center gap-2">
-                        
-          <p-button   [outlined]="true" icon="pi pi-plus" label="Add" size="small" (click)="saveMainItemFromExcel(mainItem)" class="m-2"></p-button>
-          <p-button   [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small" (click)="cancelFromExcel(mainItem)" ></p-button>
+                        <p-button [outlined]="true" icon="pi pi-plus" label="Add" size="small"
+                            (click)="saveMainItemFromExcel(mainItem)" class="m-2"></p-button>
+                        <p-button [outlined]="true" icon="pi pi-times" severity="danger" label="Cancel" size="small"
+                            (click)="cancelFromExcel(mainItem)"></p-button>
                         <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" label="Add"
                             style=" border-radius: 8px; " (click)="saveMainItemFromExcel(mainItem)">
                         </button>
@@ -1213,15 +1135,12 @@
                     </div>
                 </ng-container>
             </td>
-
             <td style="min-width: 10rem;">
                 <input pInputNumber name="totalQuantity" type="number" [min]="0" [(ngModel)]="newMainItem.totalQuantity"
                     class="rounded-input">
             </td>
-
             <td style="min-width: 10rem;">
                 <ng-container *ngIf="selectedServiceNumberRecord">
-                    <!-- {{selectedServiceNumberRecord.baseUnitOfMeasurement}} -->
                     {{selectedServiceNumberRecord.unitOfMeasurementCode}}
                 </ng-container>
                 <ng-container *ngIf="!selectedServiceNumberRecord">
@@ -1243,17 +1162,6 @@
             </td>
             <td style="min-width: 10rem;">
                 {{cloudCurrency}}
-                <!-- <p-dropdown [options]="recordsCurrency" [(ngModel)]="selectedCurrency"
-                    [ngModelOptions]="{standalone: true}" optionValue="code" optionLabel="code" [filter]="true"
-                    [filterFields]="['code','description']" [showClear]="true" placeholder="Select Currency"
-                    [required]="true" [appendTo]="'body'" [virtualScroll]="true" [virtualScrollItemSize]="40">
-                    <ng-template let-record pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <div>{{ record.code }}::{{ record.description }}</div>
-                        </div>
-                    </ng-template>
-                </p-dropdown> -->
-
             </td>
             <td style="min-width: 10rem;">
                 {{ (newMainItem.totalQuantity ?? 0) * (newMainItem.amountPerUnit ?? 0) }}
@@ -1358,50 +1266,47 @@
                     </ng-template>
                 </p-dropdown>
             </td>
-
             <!-- Bidders Line -->
             <td style="min-width: 10rem;">
                 <input pInputText name="biddersLine" class="rounded-input" type="checkbox"
                     [(ngModel)]="newMainItem.biddersLine">
             </td>
-
             <!--  Supplementary Line  -->
             <td style="min-width: 10rem;">
                 <input pInputText name="supplementaryLine" class="rounded-input" type="checkbox"
                     [(ngModel)]="newMainItem.supplementaryLine">
             </td>
-
             <!-- Lot Cost One -->
             <td style="min-width: 10rem;">
                 <input pInputText name="lotCostOne" class="rounded-input" type="checkbox"
                     [(ngModel)]="newMainItem.lotCostOne">
             </td>
-
             <td style="min-width: 10rem;">
-                
-          <p-button   [outlined]="true" icon="pi pi-plus" label="Add MainItem" size="small" (click)="addMainItemInMemory()" class="m-2"></p-button>
+                <p-button [outlined]="true" icon="pi pi-plus" label="Add MainItem" size="small"
+                    (click)="addMainItemInMemory()" class="m-2"></p-button>
                 <!-- <button pButton type="button" icon="pi pi-plus" class="ui-button-info" style=" border-radius: 8px; "
                     label="Add MainItem" (click)="addMainItemInMemory()">
                 </button> -->
             </td>
         </tr>
     </ng-template>
-
     <!-- <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
             In total there are {{mainItemsRecords ? mainItemsRecords.length : 0 }} MainItem Records.
         </div>
     </ng-template> -->
-
 </p-table>
 
+<!-- Imports Dialog -->
 <p-dialog header="Import From:" class="header-color" [(visible)]="displayImportsDialog" [modal]="true"
     [style]="{width: '70vw'}" [responsive]="true">
-
     <div class="flex align-items-between justify-content-between">
-    <p-button   [outlined]="true"  label="Quotations ?" size="small" (click)="showSalesQuotationDialog()" class="m-2"></p-button>
-    <p-button   [outlined]="true"  label="Models ?" size="small" (click)="showModelSpecsDialog()" class="m-2"></p-button>
-    <p-button   [outlined]="true"  label="Excel Sheet ?" size="small" (click)="showExcelDialog()" class="m-2"></p-button>
+        <p-button [outlined]="true" label="Quotations ?" size="small" (click)="showSalesQuotationDialog()"
+            class="m-2"></p-button>
+        <p-button [outlined]="true" label="Models ?" size="small" (click)="showModelSpecsDialog()"
+            class="m-2"></p-button>
+        <p-button [outlined]="true" label="Excel Sheet ?" size="small" (click)="showExcelDialog()"
+            class="m-2"></p-button>
         <!-- <button pButton label="Quotations ?" size="small" (click)="showSalesQuotationDialog()" class="m-2"></button>
         <button pButton label="Models ?" size="small" (click)="showModelSpecsDialog()" class="m-2"></button>
         <button pButton label="Excel Sheet ?" size="small" (click)="showExcelDialog()" class="m-2"></button> -->
@@ -1410,14 +1315,8 @@
 <!-- Quotations Dialog -->
 <p-dialog header="Select Rows to Copy:" class="header-color" [(visible)]="displayTenderingDocumentDialog" [modal]="true"
     [style]="{width: '70vw'}" [responsive]="true">
-
-    <!-- <div class="flex align-items-center justify-content-between">
-    <button pButton type="button" label="Enter Document Number" (click)="openDocumentDialog()" style="margin-bottom: 10px;" class="rounded-input"></button>
-    <button  pButton type="button" icon="pi pi-refresh"  (click)="getExecutionOrders()" style="margin-bottom: 10px;"  class="rounded-input"></button>
-    </div> -->
     <p-table [value]="salesQuotations" selectionMode="multiple" [(selection)]="selectedSalesQuotations"
         dataKey="invoiceMainItemCode">
-
         <ng-template pTemplate="header">
             <tr>
                 <th>Selection</th>
@@ -1426,10 +1325,8 @@
                 <th>Description</th>
                 <th>UOM</th>
                 <th>Quantity</th>
-                <!-- <th>ServiceInvoice Quantity</th> -->
                 <th>AmountPerUnit</th>
                 <th>Currency</th>
-
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-mainItem let-ri="rowIndex">
@@ -1450,18 +1347,15 @@
                     {{ mainItem.unitOfMeasurementCode }}
                 </td>
                 <td> {{mainItem.quantity}}</td>
-                <!-- <td> <input pInputNumber name="quantity" type="number" [min]="0"></td> -->
                 <td> {{mainItem.amountPerUnitWithProfit}}</td>
                 <td> {{mainItem.currencyCode}}</td>
-
-
             </tr>
         </ng-template>
     </p-table>
     <p-footer>
-        
-    <p-button   [outlined]="true"  label="Copy" size="small" (click)="saveSelection()" class="m-2"></p-button>
-    <p-button   [outlined]="true" severity="danger" label="Cancel" size="small" (click)="displayTenderingDocumentDialog = false" class="m-2"></p-button>
+        <p-button [outlined]="true" label="Copy" size="small" (click)="saveSelection()" class="m-2"></p-button>
+        <p-button [outlined]="true" severity="danger" label="Cancel" size="small"
+            (click)="displayTenderingDocumentDialog = false" class="m-2"></p-button>
         <!-- <button pButton type="button" (click)="saveSelection()" style=" border-radius: 8px; margin-right: 3px;  "
             label="Copy"></button>
         <button pButton type="button" (click)="displayTenderingDocumentDialog = false" style=" border-radius: 8px; "
@@ -1472,17 +1366,13 @@
 <!-- Models Dialog -->
 <p-dialog header="Select Rows to Copy:" class="header-color" [(visible)]="displayModelSpecsDialog" [modal]="true"
     [style]="{width: '70vw'}" [responsive]="true">
-
     <p-table [value]="models" selectionMode="multiple" dataKey="modelSpecCode">
-
         <ng-template pTemplate="header">
             <tr>
                 <th>Selection</th>
                 <th>ModelServSpec</th>
                 <th>Description</th>
                 <th>Services</th>
-
-
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-model let-ri="rowIndex">
@@ -1500,26 +1390,21 @@
                     {{ model.description }}
                 </td>
                 <td>
-                    
-          <p-button   [outlined]="true" icon="pi pi-external-link" label="Services" size="small" (click)="showModelSpecsDetailsDialog(model)" class="m-2"></p-button>
+                    <p-button [outlined]="true" icon="pi pi-external-link" label="Services" size="small"
+                        (click)="showModelSpecsDetailsDialog(model)" class="m-2"></p-button>
                     <!-- <button pButton (click)="showModelSpecsDetailsDialog(model)" icon="pi pi-external-link" size="small"
                         label="Services"></button> -->
                 </td>
-
-
             </tr>
         </ng-template>
     </p-table>
-
 </p-dialog>
 
 <!-- Model Details (Services) Dialog -->
 <p-dialog header="Select Rows to Copy:" class="header-color" [(visible)]="displayModelSpecsDetailsDialog" [modal]="true"
     [style]="{width: '70vw'}" [responsive]="true">
-
     <p-table [value]="modelSpecsDetails" selectionMode="multiple" [(selection)]="selectedModelSpecsDetails"
         dataKey="modelSpecDetailsCode">
-
         <ng-template pTemplate="header">
             <tr>
                 <th>Selection</th>
@@ -1530,7 +1415,6 @@
                 <th>Quantity</th>
                 <th>AmountPerUnit</th>
                 <th>Currency</th>
-
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-modelDetails let-ri="rowIndex">
@@ -1551,22 +1435,21 @@
                     {{ modelDetails.unitOfMeasurementCode }}
                 </td>
                 <td> {{modelDetails.quantity}}</td>
-                <!-- <td> <input pInputNumber name="quantity" type="number" [min]="0"></td> -->
                 <td> {{modelDetails.grossPrice}}</td>
                 <td> {{modelDetails.currencyCode}}</td>
             </tr>
         </ng-template>
     </p-table>
     <p-footer>
-        
-    <p-button   [outlined]="true"  label="Copy" size="small" (click)="saveSelectionModelSpecsDetails()" class="m-2"></p-button>
-    <p-button   [outlined]="true" severity="danger" label="Cancel" size="small" (click)="displayModelSpecsDetailsDialog = false" class="m-2"></p-button>
+        <p-button [outlined]="true" label="Copy" size="small" (click)="saveSelectionModelSpecsDetails()"
+            class="m-2"></p-button>
+        <p-button [outlined]="true" severity="danger" label="Cancel" size="small"
+            (click)="displayModelSpecsDetailsDialog = false" class="m-2"></p-button>
         <!-- <button pButton type="button" (click)="saveSelectionModelSpecsDetails()"
             style=" border-radius: 8px; margin-right: 3px;  " label="Copy"></button>
         <button pButton type="button" (click)="displayModelSpecsDetailsDialog = false" style=" border-radius: 8px; "
             label="Cancel" class="p-button-secondary"></button> -->
     </p-footer>
-
 </p-dialog>
 
 <!-- Excel Dialog -->
@@ -1576,24 +1459,7 @@
         <p-fileUpload #fileUploader name="file" accept=".xlsx,.xls" mode="basic"
             (onSelect)="onFileSelect($event, fileUploader)" [auto]="true" class="m-2" chooseLabel="Choose Excel File">
         </p-fileUpload>
-
-        <!-- <p *ngIf="parsedData.length > 0">Selected Records:</p>
-        <p-table *ngIf="parsedData.length > 0" [value]="parsedData" [rows]="10" [paginator]="true">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th *ngFor="let col of displayedColumns">{{ col }}</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-row>
-                <tr>
-                    <td *ngFor="let col of displayedColumns">{{ row[col] }}</td>
-                </tr>
-            </ng-template>
-        </p-table> -->
-        <!-- <button pButton label="Copy From The Excel" (click)="importSelectedRecords()" class="mt-3"></button> -->
     </div>
-
-
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

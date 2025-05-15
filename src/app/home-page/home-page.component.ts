@@ -10,7 +10,6 @@ export class HomePageComponent {
 
   constructor(private router: Router) {}
   navigateLoginPage(){
-    // alert("login")
     this.router.navigate(['/login']);
   }
 

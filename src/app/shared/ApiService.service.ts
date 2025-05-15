@@ -9,20 +9,13 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
 
-  //  private baseUrl = environment.apiUrl
-  //private baseUrl = "https://express-proxy-app.cfapps.us10-001.hana.ondemand.com/api"
   //private baseUrl = "https://proxy-server.cfapps.eu10-004.hana.ondemand.com/api"
   private baseUrl = '/backend-dest'
-
-  //private baseUrl = 'https://thingproxy.freeboard.io/fetch/https://btpsddev.cfapps.eu10-004.hana.ondemand.com'
 
   constructor(private http: HttpClient) { }
 
   get<T>(url: string, queryParam?: string, headers?: HttpHeaders): Observable<T> {
     let params = new HttpParams();
-
-    // headers =new HttpHeaders().set('Authorization',`Bearer ${ localStorage.getItem('token')}`)
-
     if (queryParam) {
       params = params.set('keyword', queryParam);
       console.log(params);
@@ -32,9 +25,6 @@ export class ApiService {
   }
 
   getID<T>(url: string, id: number, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
-    //const options = { params, headers };
-
-    //headers =new HttpHeaders().set('Authorization',`Bearer ${ localStorage.getItem('token')}`)
     console.log(this.http.get<T>(`${this.baseUrl}/${url}/${id}`));
     return this.http.get<T>(`${this.baseUrl}/${url}/${id}`);
   }
