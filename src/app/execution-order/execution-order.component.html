@@ -1,7 +1,7 @@
 <div class="card">
     <p-toolbar>
         <div class="p-toolbar-group-start">
-            <h5>{{itemText}}</h5>
+            <h5>{{'Document: ' + documentNumber +' - '+ itemText}}</h5>
         </div>
         <div class="p-toolbar-group-end">
             <p-button [outlined]="true" label="Save Document" size="small" icon="pi pi-save" (click)="saveDocument()"
