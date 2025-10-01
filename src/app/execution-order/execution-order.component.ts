@@ -83,6 +83,8 @@ export class ExecutionOrderComponent {
   public rowIndex = 0;
 
   mainItemsRecords: MainItem[] = [];
+  // to detect unsaved edits
+  editingRows: Set<number> = new Set(); // rowIndex values of rows being edited
 
   constructor(private cdr: ChangeDetectorRef, private router: Router, private _ApiService: ApiService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.documentNumber = this.router.getCurrentNavigation()?.extras.state?.['documentNumber'];
@@ -550,11 +552,12 @@ export class ExecutionOrderComponent {
  
   // For Edit  MainItem
   clonedMainItem: { [s: number]: MainItem } = {};
-  onMainItemEditInit(record: MainItem) {
+  onMainItemEditInit(record: MainItem, ri: number) {
     console.log(record);
     this.clonedMainItem[record.executionOrderMainCode] = { ...record };
+    this.editingRows.add(ri);
   }
-  onMainItemEditSave(index: number, record: MainItem) {
+  onMainItemEditSave(index: number, record: MainItem, ri: number) {
     console.log(record);
     const updatedMainItem = this.removePropertiesFrom(record, ['executionOrderMainCode']);
     console.log(updatedMainItem);
@@ -683,10 +686,12 @@ export class ExecutionOrderComponent {
       //   }
       // });
     }
+     this.editingRows.delete(ri);
   }
   onMainItemEditCancel(row: MainItem, index: number) {
     this.mainItemsRecords[index] = this.clonedMainItem[row.executionOrderMainCode]
     delete this.clonedMainItem[row.executionOrderMainCode]
+    this.editingRows.delete(index);
   }
   // Delete MainItem 
   deleteRecord() {
@@ -1012,6 +1017,14 @@ export class ExecutionOrderComponent {
   }
 
   saveDocument() {
+    if (this.editingRows.size > 0) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Cannot Save the document,Please save your entries first'
+      });
+      return;
+    }
     // if (this.selectedMainItems.length) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to save the document?',
