@@ -180,7 +180,8 @@
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         <ng-container *ngIf="updateSelectedServiceNumberRecord">
-                            {{ updateSelectedServiceNumberRecord.unitOfMeasurementCode }}
+                            <!-- {{ updateSelectedServiceNumberRecord.unitOfMeasurementCode }} -->
+                            {{ updateSelectedServiceNumberRecord.baseUnitOfMeasurement }}
                         </ng-container>
                         <ng-container *ngIf="!updateSelectedServiceNumberRecord">
                             <p-dropdown [options]="recordsUnitOfMeasure" [(ngModel)]="mainItem.unitOfMeasurementCode"
@@ -1141,7 +1142,8 @@
             </td>
             <td style="min-width: 10rem;">
                 <ng-container *ngIf="selectedServiceNumberRecord">
-                    {{selectedServiceNumberRecord.unitOfMeasurementCode}}
+                    <!-- {{selectedServiceNumberRecord.unitOfMeasurementCode}} -->
+                    {{selectedServiceNumberRecord.baseUnitOfMeasurement}}
                 </ng-container>
                 <ng-container *ngIf="!selectedServiceNumberRecord">
                     <p-dropdown [options]="recordsUnitOfMeasure" [(ngModel)]="selectedUnitOfMeasure"

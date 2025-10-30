@@ -566,8 +566,9 @@ export class ExecutionOrderComponent {
       const newRecord: MainItem = {
         // ...record, // Copy all properties from the original record
         ...updatedMainItem,
-        unitOfMeasurementCode: this.updateSelectedServiceNumberRecord.unitOfMeasurementCode,
-        //this.updateSelectedServiceNumberRecord.baseUnitOfMeasurement,
+        unitOfMeasurementCode: 
+        //this.updateSelectedServiceNumberRecord.unitOfMeasurementCode,
+        this.updateSelectedServiceNumberRecord.baseUnitOfMeasurement,
         description: this.updateSelectedServiceNumberRecord.description,
         materialGroupCode: this.updateSelectedServiceNumberRecord.materialGroupCode,
         serviceTypeCode: this.updateSelectedServiceNumberRecord.serviceTypeCode,
@@ -899,8 +900,9 @@ export class ExecutionOrderComponent {
       const newRecord: MainItem = {
         originalIndex: this.mainItemsRecords.length + 1,
         serviceNumberCode: this.selectedServiceNumber,
-        unitOfMeasurementCode: this.selectedServiceNumberRecord?.unitOfMeasurementCode,
-        //this.selectedServiceNumberRecord?.baseUnitOfMeasurement,
+        unitOfMeasurementCode: 
+        //this.selectedServiceNumberRecord?.unitOfMeasurementCode,
+        this.selectedServiceNumberRecord?.baseUnitOfMeasurement,
         currencyCode: this.cloudCurrency,
         // this.selectedCurrency,
 
